@@ -19,8 +19,8 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
     // Client widgets
     private EditText clientAddressEditText = null;
     private EditText clientPortEditText = null;
-    private Button getWeatherForecastButton = null;
-    private TextView weatherForecastTextView = null;
+    private Button getTimeButton = null;
+    private TextView timeTextView = null;
 
     private ServerThread serverThread = null;
     private ClientThread clientThread = null;
@@ -50,8 +50,8 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
         }
     }
 
-    private GetWeatherForecastButtonClickListener getWeatherForecastButtonClickListener = new GetWeatherForecastButtonClickListener();
-    private class GetWeatherForecastButtonClickListener implements Button.OnClickListener {
+    private GetTimeButtonClickListener getWeatherForecastButtonClickListener = new GetTimeButtonClickListener();
+    private class GetTimeButtonClickListener implements Button.OnClickListener {
 
         @Override
         public void onClick(View view) {
@@ -72,12 +72,12 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
                 return;
             }
 
-            weatherForecastTextView.setText(Constants.EMPTY_STRING);
+            timeTextView.setText(Constants.EMPTY_STRING);
 
             clientThread = new ClientThread(
                     clientAddress,
                     Integer.parseInt(clientPort),
-                    weatherForecastTextView);
+                    timeTextView);
             clientThread.start();
         }
     }
@@ -93,9 +93,9 @@ public class PracticalTest02MainActivity extends AppCompatActivity {
 
         clientAddressEditText = (EditText)findViewById(R.id.client_address_edit_text);
         clientPortEditText = (EditText)findViewById(R.id.client_port_edit_text);
-        getWeatherForecastButton = (Button)findViewById(R.id.get_time_button);
-        getWeatherForecastButton.setOnClickListener(getWeatherForecastButtonClickListener);
-        weatherForecastTextView = (TextView)findViewById(R.id.get_time_text_view);
+        getTimeButton = (Button)findViewById(R.id.get_time_button);
+        getTimeButton.setOnClickListener(getWeatherForecastButtonClickListener);
+        timeTextView = (TextView)findViewById(R.id.get_time_text_view);
     }
 
     @Override
